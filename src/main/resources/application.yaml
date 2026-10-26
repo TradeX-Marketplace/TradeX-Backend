@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: tradex
+
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/tradex}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:3006}
+    driver-class-name: org.postgresql.Driver
+
+  # ══════════════════════════════════════════════════════════════
+  # JPA CONFIGURATION
+  # ══════════════════════════════════════════════════════════════
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+
+  # ══════════════════════════════════════════════════════════════
+  # FLYWAY CONFIGURATION
+  # ══════════════════════════════════════════════════════════════
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    out-of-order: false
+
+  # ══════════════════════════════════════════════════════════════
+  # WHATSAPP MESSAGING CONFIGURATION (BookBey API)
+  # ══════════════════════════════════════════════════════════════
+  whatsapp:
+    api-key: ${WHATSAPP_API_KEY:vccl_live_049c7e1d006e526fdb74501b77ec2cb4b749e1d6}
+    base-url: ${WHATSAPP_BASE_URL:https://www.bookbey.com/public/api}
+    from-number: ${WHATSAPP_FROM_NUMBER:+917303344177}
+    from-name: ${WHATSAPP_FROM_NAME:TradeX}
+    admin-phone: ${WHATSAPP_ADMIN_PHONE:9321544177}
+    enabled: ${WHATSAPP_ENABLED:true}
+    timeout-seconds: ${WHATSAPP_TIMEOUT:30}
+    retry-attempts: ${WHATSAPP_RETRY_ATTEMPTS:3}
+    retry-delay-ms: ${WHATSAPP_RETRY_DELAY_MS:1000}
+    dispatch-delay-ms: ${WHATSAPP_DISPATCH_DELAY_MS:800}

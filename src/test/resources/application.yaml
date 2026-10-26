@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: tradex-test
+
+  datasource:
+    url: jdbc:h2:mem:tradex_test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    open-in-view: false
+    show-sql: false
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+  flyway:
+    enabled: false
+
+app:
+  jwt:
+    secret: "tradex-secret-key-min-32-characters-required-for-hmac-sha256"
+    expiration: 86400000
+    refresh-expiration: 604800000
